@@ -40,9 +40,10 @@ if ingredients_list:
         st.subheader(f"{fruit_chosen} Nutrition Information")
 
         # Using fruit name directly for API
-        response = requests.get(
-            f"https://fruityvice.com/api/fruit/{fruit_chosen.lower()}"
-        )
+        
+        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+        # st.text(smoothiefroot_response)
+        sf_df=st.dataframe(data=smoothiefroot_response.json(),use_container_width=True)
 
         if response.status_code == 200:
             nutrition_df = pd.json_normalize(response.json())
